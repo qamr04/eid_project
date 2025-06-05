@@ -1,0 +1,582 @@
+/* ======================================= */
+/* CSS Variabelen voor Theming - Vrolijke Eid Editie */
+/* ======================================= */
+:root {
+    --primary-color: #FF6F61; /* Levendig Koraalrood - Actiekleuren */
+    --secondary-color: #6A0572; /* Diep Paars - Complementaire kleur */
+    --text-color-light: #FFFAE6; /* Roomwit - Goed leesbaar op donker */
+    --text-color-dark: #3A0000; /* Diep Bordeaux - Voor contrast, indien nodig */
+    --accent-color: #FFD700; /* Goud - Feestelijk accent */
+
+    /* Achtergrond- en boxkleuren - Vrolijk Transparant */
+    --overlay-color: rgba(50, 0, 70, 0.55); /* Donkerder, paars-achtig overlay over achtergrond */
+    --box-bg-color: rgba(255, 165, 0, 0.18); /* Transparant Oranje-Goud voor contentboxen */
+    --alt-section-bg-color: rgba(255, 100, 100, 0.12); /* Zeer licht transparant rood voor afwisselende secties */
+    --countdown-box-bg: rgba(255, 165, 0, 0.3); /* Iets dekkender oranje-goud voor countdown vakken */
+    --wish-item-bg: rgba(255, 165, 0, 0.12); /* Transparant oranje-goud voor wensitems */
+
+    /* Lettertypen */
+    --font-heading: 'Great Vibes', cursive;
+    --font-body: 'Open Sans', sans-serif;
+
+    /* Schaduwen */
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.5);
+    --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.6);
+    --text-shadow-light: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    --text-shadow-heavy: 2px 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* ======================================= */
+/* Algemene Resets & Basisstijlen */
+/* ======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-color-light);
+    line-height: 1.6;
+    overflow-x: hidden; /* Voorkomt horizontale scrollbalken */
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Voor sticky footer */
+}
+
+/* ======================================= */
+/* Achtergrond Media (Video/Afbeelding) */
+/* ======================================= */
+.background-media {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Ligt achter alles */
+    overflow: hidden;
+}
+
+.background-video,
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Transities voor soepel wisselen tussen video en afbeelding */
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    opacity: 0; /* Standaard onzichtbaar, JS maakt het zichtbaar */
+    visibility: hidden;
+}
+
+.background-image {
+    opacity: 1; /* Afbeelding is standaard zichtbaar, tenzij video laadt */
+    visibility: visible;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    z-index: -1; /* Tussen media en inhoud */
+}
+
+/* ======================================= */
+/* Hulpprogramma's (Flexbox, Fullscreen) */
+/* ======================================= */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreen {
+    min-height: 100vh;
+}
+
+/* ======================================= */
+/* Header en Navigatie */
+/* ======================================= */
+.main-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: var(--overlay-color); /* Gebruikt de vrolijke overlay kleur */
+    padding: 15px 0;
+    box-shadow: var(--shadow-light);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    color: var(--accent-color);
+    text-shadow: var(--text-shadow-light);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.1em;
+    transition: color 0.3s ease, transform 0.3s ease;
+    padding: 5px 0; /* Zorgt voor een groter klikgebied */
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    color: var(--primary-color); /* Vrolijk koraalrood bij hover */
+    transform: translateY(-2px);
+}
+
+/* ======================================= */
+/* Hero Sectie (Home) */
+/* ======================================= */
+.hero-section {
+    padding-top: 100px;
+    text-align: center;
+    min-height: calc(100vh - 100px);
+    flex-grow: 1; /* Zorgt dat het de resterende ruimte vult */
+}
+
+.hero-content {
+    background-color: var(--box-bg-color); /* Vrolijk transparant oranje-goud */
+    padding: 50px 70px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-heavy);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 6em;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    text-shadow: var(--text-shadow-heavy);
+    line-height: 1;
+}
+
+.hero-content .sub-text {
+    font-size: 1.8em;
+    color: var(--text-color-light);
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.hero-content .highlight-name {
+    font-family: var(--font-heading);
+    font-size: 1.2em;
+    color: var(--primary-color); /* Yasmina in koraalrood */
+    text-shadow: var(--text-shadow-light);
+}
+
+.separator {
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 20px auto 30px auto;
+    border-radius: 5px;
+}
+
+.greeting-message {
+    font-size: 1.3em;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    font-weight: 300;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-color); /* Vrolijk koraalrood */
+    color: var(--text-color-light);
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    background-color: #E65A50; /* Iets donkerder koraalrood bij hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* ======================================= */
+/* Algemene Sectie Stijlen */
+/* ======================================= */
+main {
+    flex-grow: 1; /* Zorgt dat main de resterende ruimte vult */
+}
+
+.section-container {
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    min-height: 60vh;
+    display: flex; /* Gebruik flexbox voor centrering van content */
+    justify-content: center;
+    align-items: center;
+}
+
+.section-container:nth-of-type(even) { /* Voor afwisselende secties */
+    background-color: var(--alt-section-bg-color); /* Vrolijk transparant rood */
+}
+
+.section-content {
+    background-color: var(--box-bg-color); /* Vrolijk transparant oranje-goud */
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-medium);
+    max-width: 900px;
+    width: 100%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-content h2 {
+    font-family: var(--font-heading);
+    font-size: 3.5em;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    text-shadow: var(--text-shadow-light);
+}
+
+/* ======================================= */
+/* Countdown Timer Stijlen (zullen verborgen zijn door JS) */
+/* ======================================= */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    /* display: none; */ /* Wordt door JS in- of uitgeschakeld */
+}
+
+.time-box {
+    background-color: var(--countdown-box-bg); /* Vrolijk dekkender oranje-goud */
+    padding: 25px 35px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--accent-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+    text-shadow: var(--text-shadow-light);
+}
+
+.time-box small {
+    font-size: 0.4em;
+    font-weight: 400;
+    margin-top: 10px;
+    color: var(--text-color-light);
+    opacity: 0.8;
+}
+
+.message-after-countdown {
+    font-size: 1.5em;
+    color: var(--text-color-light);
+    font-weight: 600;
+    margin-top: 20px;
+    min-height: 30px; /* Houdt ruimte vrij */
+}
+
+/* ======================================= */
+/* Bericht Sectie Specifiek */
+/* ======================================= */
+.long-message {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.signature {
+    font-family: var(--font-heading);
+    font-size: 2em;
+    margin-top: 40px;
+    color: var(--primary-color); /* Signatuur in koraalrood */
+}
+
+.signature-name {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-top: 10px;
+    color: var(--accent-color); /* Naam in goud */
+}
+
+/* ======================================= */
+/* Wensen Sectie */
+/* ======================================= */
+.wish-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#wishText {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.3); /* Tekstveld blijft donkerder voor contrast */
+    color: var(--text-color-light);
+    font-family: var(--font-body);
+    font-size: 1em;
+    resize: vertical;
+}
+
+#wishText::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+#submitWish {
+    align-self: flex-end;
+}
+
+.wish-output {
+    margin-top: 40px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.3);
+    padding-top: 20px;
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+.wish-item {
+    background-color: var(--wish-item-bg); /* Vrolijk transparant oranje-goud voor wensitems */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-left: 4px solid var(--primary-color); /* Accent met koraalrood */
+    font-size: 1.1em;
+    word-wrap: break-word;
+}
+
+.note {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 20px;
+}
+
+/* ======================================= */
+/* Footer */
+/* ======================================= */
+.main-footer {
+    background-color: var(--overlay-color); /* Vrolijke paars-achtige overlay kleur */
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9em;
+    margin-top: auto; /* Duwt de footer naar de onderkant */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-footer p {
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    color: var(--text-color-light);
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color); /* Social links in koraalrood bij hover */
+}
+
+/* ======================================= */
+/* Animatie Klassen (voor JS) */
+/* ======================================= */
+.animate-fade-in {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-slide-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-slide-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-slide-up-on-scroll {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-slide-up-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ======================================= */
+/* Media Queries voor Responsiviteit */
+/* ======================================= */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links li {
+        margin: 5px 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 4em;
+    }
+
+    .hero-content .sub-text {
+        font-size: 1.5em;
+    }
+
+    .hero-content {
+        padding: 40px;
+    }
+
+    .section-content h2 {
+        font-size: 2.8em;
+    }
+
+    .countdown-timer {
+        gap: 20px;
+    }
+
+    .time-box {
+        min-width: 100px;
+        padding: 20px 25px;
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 600px) {
+    .logo {
+        font-size: 1.8em;
+    }
+
+    .nav-links li {
+        margin: 5px 10px;
+        font-size: 0.9em;
+    }
+
+    .hero-content h1 {
+        font-size: 3em;
+    }
+
+    .hero-content .sub-text {
+        font-size: 1.2em;
+    }
+
+    .hero-content {
+        padding: 30px;
+    }
+
+    .greeting-message {
+        font-size: 1em;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    .section-content {
+        padding: 30px;
+    }
+
+    .section-content h2 {
+        font-size: 2em;
+    }
+
+    .time-box {
+        font-size: 1.8em;
+        padding: 15px 20px;
+        min-width: 80px;
+    }
+
+    .long-message {
+        font-size: 1em;
+    }
+
+    .signature {
+        font-size: 1.5em;
+    }
+
+    .wish-input-group {
+        width: 100%;
+    }
+}

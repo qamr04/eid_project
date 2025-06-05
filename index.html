@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Mubarak - Een Speciaal Bericht</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="background-media">
+        <video autoplay muted loop playsinline class="background-video">
+            <source src="assets/video/background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <img src="assets/images/background.jpg" alt="Sterrenhemel achtergrond" class="background-image">
+        <div class="background-overlay"></div>
+    </div>
+
+    <header class="main-header animate-fade-in">
+        <nav class="navbar">
+            <div class="logo">Eid Mubarak</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#countdown">Aftelling</a></li>
+                <li><a href="#message">Bericht</a></li>
+                <li><a href="#wishes">Wensen</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section flex-center fullscreen">
+            <div class="hero-content animate-slide-up">
+                <h1 class="elegant-text">Eid Mubarak</h1>
+                <p class="sub-text">Aan jou, <span class="highlight-name">Yasmina</span></p>
+                <div class="separator"></div>
+                <p class="greeting-message">Moge deze Eid vreugde, liefde en vrede brengen voor jou en je dierbaren.</p>
+                <a href="#countdown" class="cta-button">Ontdek Meer</a>
+            </div>
+        </section>
+
+        <section id="countdown" class="section-container flex-center">
+            <div class="section-content animate-slide-up-on-scroll">
+                <h2>De Aftelling naar Eid</h2>
+                <div id="timer" class="countdown-timer">
+                    <div class="time-box">
+                        <span id="days">00</span>
+                        <small>Dagen</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours">00</span>
+                        <small>Uren</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes">00</span>
+                        <small>Minuten</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds">00</span>
+                        <small>Seconden</small>
+                    </div>
+                </div>
+                <p id="countdown-message" class="message-after-countdown">Laden...</p>
+            </div>
+        </section>
+
+        <section id="message" class="section-container flex-center">
+            <div class="section-content animate-slide-up-on-scroll">
+                <h2>Een Speciale Boodschap</h2>
+                <p class="long-message">
+                    In deze gezegende tijd van Eid, wil ik je de warmste groeten en oprechte wensen sturen. Moge de vreugde van Eid je hart vullen en vrede en voorspoed brengen in je leven. Dat al je gebeden worden verhoord en je huis gezegend is met geluk en liefde.
+                </p>
+                <p class="signature">Met de beste wensen,</p>
+                <p class="signature-name">ayman :P</p>
+            </div>
+        </section>
+
+        <section id="wishes" class="section-container flex-center">
+            <div class="section-content animate-slide-up-on-scroll">
+                <h2>Deel Jouw Wensen</h2>
+                <p>Wat wens jij deze Eid? Laat het hier achter!</p>
+                <div class="wish-input-group">
+                    <textarea id="wishText" rows="4" placeholder="Schrijf hier je wens..."></textarea>
+                    <button id="submitWish" class="cta-button">Verstuur Wens</button>
+                </div>
+                <div id="wishOutput" class="wish-output">
+                    </div>
+                <p class="note">Let op: Deze wensen zijn alleen zichtbaar voor jou en worden niet opgeslagen.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Eid Mubarak. Met liefde gemaakt.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
